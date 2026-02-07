@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Transforme Seu Corpo</title>
+<style>
+:root{--bg:#E3E5E6;--txt:#2C2C2C;--muted:#6B7280;--muted2:#5A5A5A;--card:#ffffffeb;--border:rgba(223,77,62,.18);--pri:#DF4D3E;--pri2:#C73E2F;--hero1:#F3F4F6;--hero2:#E5E7EB;--hero3:#D1D5DB;--shadow:0 2px 10px rgba(0,0,0,.08)}
+.dark-theme{--bg:#1A2E1A;--txt:#E8F5E8;--muted:#D1D5DB;--muted2:#C8E6C9;--card:rgba(45,80,22,.7);--border:rgba(76,175,80,.3);--pri:#4CAF50;--pri2:#45A049;--hero1:#2D5016;--hero2:#3D6B1F;--hero3:#4A7C23;--shadow:0 5px 15px rgba(76,175,80,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;width:100%}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;transition:.35s ease}
+
+/* ─── HEADER ─── */
+.header{width:100%;background:rgba(255,255,255,.98);border-bottom:1px solid rgba(223,77,62,.2);padding:12px 0;position:sticky;top:0;z-index:1000;transition:.35s ease}
+.dark-theme .header{background:rgba(26,46,26,.98);border-bottom-color:rgba(76,175,80,.4)}
+.header-content{max-width:920px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:14px}
+.logo-box{width:40px;height:40px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:var(--shadow);cursor:pointer}
+.logo-box img{width:100%;height:100%;object-fit:contain}
+.header-text{font-size:11px;color:var(--muted);font-weight:600;transition:.35s ease}
+.theme-btn{background:rgba(223,77,62,.1);border:1px solid rgba(223,77,62,.2);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:16px;transition:.25s ease}
+.theme-btn:hover{background:rgba(223,77,62,.15)}
+.dark-theme .theme-btn{background:rgba(76,175,80,.15);border-color:rgba(76,175,80,.3)}
+.dark-theme .theme-btn:hover{background:rgba(76,175,80,.25)}
+
+/* ─── LAYOUT ─── */
+.container{max-width:920px;margin:0 auto;padding:0 16px}
+.section{padding:32px 16px}
+
+/* ─── HERO ─── */
+.hero-section{width:100%;background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 50%,var(--hero3) 100%);text-align:center;transition:.35s ease}
+.hero-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700;transition:.35s ease}
+.hero-section h1{font-size:24px;margin-bottom:10px;color:#1F2937;font-weight:900;line-height:1.3;transition:.35s ease}
+.dark-theme .hero-section h1{color:#F9FAFB}
+.hero-highlight{color:var(--pri);transition:.35s ease}
+.hero-section p{font-size:14px;margin-bottom:10px;color:#4B5563;line-height:1.6;transition:.35s ease}
+.dark-theme .hero-section p{color:var(--muted)}
+
+/* ─── BUTTONS ─── */
+.btn{display:inline-block;margin-top:8px;padding:9px 20px;border-radius:999px;background:var(--pri);color:#fff;font-weight:800;font-size:13px;text-decoration:none;transition:.25s ease;border:none;cursor:pointer}
+.btn:hover{background:var(--pri2);transform:translateY(-2px)}
+
+/* ─── TITLES ─── */
+.title{font-size:19px;color:#1F2937;margin-bottom:8px;text-align:center;font-weight:900;transition:.35s ease}
+.dark-theme .title{color:#F9FAFB}
+.subtitle{text-align:center;font-size:13px;color:var(--muted2);margin:0 auto 14px;max-width:520px;line-height:1.5;transition:.35s ease}
+
+/* ─── CARDS ─── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--card);border-radius:14px;padding:14px 12px;border:1px solid var(--border);font-size:13px;transition:.25s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 5px 15px rgba(223,77,62,.15)}
+.dark-theme .card:hover{box-shadow:var(--shadow)}
+.emoji{font-size:22px;margin-bottom:6px;display:block}
+.card h3{font-size:14px;margin-bottom:6px;color:var(--txt);font-weight:800}
+.card p{font-size:13px;color:var(--muted2);line-height:1.5}
+
+/* ─── CTA BOX ─── */
+.cta-box{background:var(--pri);color:#fff;text-align:center;border-radius:18px;padding:20px 16px;transition:.35s ease}
+.pill{display:inline-block;margin-bottom:8px;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.7);font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.cta-box .title{color:#fff}
+.cta-box p{font-size:13px;margin:0 auto 14px;max-width:520px;line-height:1.6}
+.cta-box .btn{background:#fff;color:var(--pri)}
+.cta-box .btn:hover{background:#F9FAFB}
+
+/* ─── AUTHORS ─── */
+.authors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:20px}
+.author-card{background:rgba(255,255,255,.95);border-radius:16px;padding:80px 20px 24px;border:1px solid var(--border);text-align:center;transition:.25s ease;position:relative;margin-top:60px}
+.author-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(223,77,62,.15)}
+.dark-theme .author-card{background:var(--card)}
+.dark-theme .author-card:hover{box-shadow:0 6px 20px rgba(76,175,80,.3)}
+.author-photo-wrapper{width:120px;height:120px;border-radius:50%;padding:4px;background:linear-gradient(135deg,var(--pri),var(--pri2));transition:.35s ease;position:absolute;top:-60px;left:50%;transform:translateX(-50%)}
+.author-photo{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff}
+.dark-theme .author-photo{border-color:#1A2E1A}
+.author-name{font-size:17px;color:#1F2937;font-weight:900;margin-bottom:10px;transition:.35s ease}
+.dark-theme .author-name{color:var(--txt)}
+.author-bio{font-size:13px;color:var(--muted2);line-height:1.6;transition:.35s ease}
+
+/* ─── FOOTER ─── */
+.footer{width:100%;background:#2C2C2C;color:#fff;text-align:center;padding:12px 10px;font-size:11px;line-height:1.4;transition:.35s ease}
+.dark-theme .footer{background:#1B5E20}
+.footer p{margin-bottom:6px}
+.footer p:last-child{margin-bottom:0}
+
+/* ─── PAGES ─── */
+.page{display:none}
+.page.active{display:block}
+
+/* ─── FORMS ─── */
+.form-container{max-width:480px;margin:0 auto;padding:40px 24px}
+.form-box{background:rgba(255,255,255,.95);border-radius:20px;padding:32px 28px;box-shadow:0 10px 40px rgba(0,0,0,.1);border:1px solid rgba(223,77,62,.15);transition:.35s ease}
+.dark-theme .form-box{background:rgba(45,80,22,.8);border-color:rgba(76,175,80,.3)}
+.form-icon{font-size:48px;text-align:center;margin-bottom:16px}
+.form-title{font-size:22px;color:#1F2937;text-align:center;font-weight:900;margin-bottom:8px;transition:.35s ease}
+.dark-theme .form-title{color:#F9FAFB}
+.form-subtitle{font-size:14px;color:var(--muted2);text-align:center;margin-bottom:24px;line-height:1.5;transition:.35s ease}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:800;color:#374151;margin-bottom:6px;transition:.35s ease}
+.dark-theme .form-group label{color:var(--txt)}
+.form-group input[type=text],.form-group input[type=email],.form-group input[type=password],.form-group input[type=url],.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:2px solid #E5E7EB;border-radius:10px;font-size:14px;font-family:inherit;transition:.25s ease;background:#fff;color:#1F2937}
+.form-group textarea{resize:vertical;min-height:70px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px rgba(223,77,62,.1)}
+.dark-theme .form-group input[type=text],.dark-theme .form-group input[type=email],.dark-theme .form-group input[type=url],.dark-theme .form-group select,.dark-theme .form-group textarea{background:rgba(26,46,26,.6);border-color:rgba(76,175,80,.3);color:var(--txt)}
+.dark-theme .form-group input:focus,.dark-theme .form-group select:focus,.dark-theme .form-group textarea:focus{box-shadow:0 0 0 3px rgba(76,175,80,.2)}
+.checkbox-group{display:flex;align-items:flex-start;gap:10px;margin:20px 0;padding:14px;background:rgba(223,77,62,.05);border-radius:10px;transition:.35s ease}
+.dark-theme .checkbox-group{background:rgba(76,175,80,.1)}
+.checkbox-group input[type=checkbox]{margin-top:2px;width:18px;height:18px;cursor:pointer;flex-shrink:0}
+.checkbox-group label{font-size:13px;color:#4B5563;line-height:1.5;cursor:pointer;margin:0;transition:.35s ease}
+.dark-theme .checkbox-group label{color:var(--muted2)}
+.form-btn{width:100%;padding:14px 20px;border-radius:999px;background:var(--pri);color:#fff;font-weight:900;font-size:15px;border:none;cursor:pointer;transition:.25s ease;margin-top:8px}
+.form-btn:hover{background:var(--pri2);transform:translateY(-2px);box-shadow:0 4px 12px rgba(223,77,62,.3)}
+.dark-theme .form-btn:hover{box-shadow:0 4px 12px rgba(76,175,80,.4)}
+.form-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.back-link{display:block;text-align:center;margin-top:16px;font-size:13px;color:var(--muted);text-decoration:none;transition:.25s ease}
+.back-link:hover{color:var(--pri)}
+
+/* ─── PURCHASE LINKS ─── */
+.success-icon{font-size:64px;margin-bottom:16px;text-align:center}
+.platforms-grid{display:grid;gap:14px;margin:24px 0}
+.platform-card{display:flex;align-items:center;gap:16px;padding:18px 16px;background:rgba(223,77,62,.05);border:2px solid rgba(223,77,62,.15);border-radius:14px;text-decoration:none;transition:.25s ease;cursor:pointer}
+.platform-card:hover{background:rgba(223,77,62,.1);border-color:rgba(223,77,62,.3);transform:translateY(-2px);box-shadow:0 4px 12px rgba(223,77,62,.15)}
+.dark-theme .platform-card{background:rgba(76,175,80,.1);border-color:rgba(76,175,80,.25)}
+.dark-theme .platform-card:hover{background:rgba(76,175,80,.15);border-color:rgba(76,175,80,.4);box-shadow:0 4px 12px rgba(76,175,80,.25)}
+.platform-icon{font-size:30px;flex-shrink:0;width:48px;text-align:center}
+.platform-text{display:flex;flex-direction:column}
+.platform-name{font-size:16px;font-weight:900;color:#1F2937;margin-bottom:2px;transition:.35s ease}
+.dark-theme .platform-name{color:var(--txt)}
+.platform-desc{font-size:13px;color:var(--muted2);transition:.35s ease}
+
+/* ─── ADMIN TABLE ─── */
+.admin-table-wrap{overflow-x:auto;margin-top:16px}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden}
+.admin-table th{padding:10px 12px;border-bottom:2px solid var(--border);text-align:left;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);background:rgba(0,0,0,.03)}
+.dark-theme .admin-table th{background:rgba(255,255,255,.04)}
+.admin-table td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,.06);color:var(--txt)}
+.dark-theme .admin-table td{border-bottom-color:rgba(255,255,255,.08)}
+.admin-table tr:last-child td{border-bottom:none}
+.empty-msg{padding:18px;color:var(--muted2);text-align:center;font-size:13px}
+
+/* ─── ADMIN TABS ─── */
+.admin-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.admin-tab{padding:8px 16px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted2);font-size:13px;font-weight:700;cursor:pointer;transition:.2s}
+.admin-tab:hover{border-color:var(--pri)}
+.admin-tab.active{background:var(--pri);color:#fff;border-color:var(--pri)}
+.admin-tab-content{display:none}
+.admin-tab-content.active{display:block}
+
+/* ─── EBOOK ADMIN CARDS ─── */
+.ebook-admin-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;transition:.2s}
+.ebook-admin-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.ebook-admin-card .ebook-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.ebook-admin-card .ebook-title{font-size:15px;font-weight:800;color:var(--txt)}
+.ebook-admin-card .ebook-meta{font-size:12px;color:var(--muted2);margin-top:3px}
+.ebook-admin-card .ebook-links{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.ebook-link-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(223,77,62,.08);color:var(--pri);border:1px solid rgba(223,77,62,.18)}
+.dark-theme .ebook-link-badge{background:rgba(76,175,80,.12);color:var(--pri);border-color:var(--border)}
+.status-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.status-badge.on{background:rgba(34,197,94,.12);color:#16a34a}
+.status-badge.off{background:rgba(239,68,68,.12);color:#dc2626}
+
+/* ─── LINKS DYNAMIC INPUT ─── */
+.link-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:8px}
+.link-row .form-group{margin-bottom:0;flex:1}
+.link-row .remove-link-btn{background:none;border:none;color:#dc2626;font-size:18px;cursor:pointer;padding:4px 8px;border-radius:6px;flex-shrink:0;align-self:center}
+.link-row .remove-link-btn:hover{background:rgba(220,38,38,.1)}
+.add-link-btn{background:none;border:2px dashed var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:8px;border-radius:10px;width:100%;cursor:pointer;transition:.2s;margin-top:4px}
+.add-link-btn:hover{border-color:var(--pri);color:var(--pri)}
+
+/* ─── REPORT CONTROLS ─── */
+.report-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.report-row .form-group{flex:1;min-width:140px;margin-bottom:0}
+.report-btn{padding:12px 24px;border-radius:999px;background:var(--pri);color:#fff;font-weight:800;font-size:14px;border:none;cursor:pointer;transition:.25s}
+.report-btn:hover{background:var(--pri2);transform:translateY(-2px)}
+.report-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:#1e293b;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:9999;transition:transform .35s cubic-bezier(.4,0,.2,1);max-width:90vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.error{background:#dc2626}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr}
+  .header-text{font-size:10px}
+  .form-box{padding:24px 20px}
+  .authors-grid{grid-template-columns:1fr}
+  .link-row{flex-direction:column;align-items:stretch}
+  .link-row .remove-link-btn{align-self:flex-end}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-content">
+    <div class="header-left">
+      <a href="#" id="adminLink" aria-label="Área administrativa" style="text-decoration:none;display:inline-flex">
+        <div class="logo-box">
+          <img src="https://i.ibb.co/ymQqxvZh/logo.png" alt="Logo" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='📚'">
+        </div>
+      </a>
+      <div class="header-text">Transforme seu corpo com ciência e cuidado</div>
+    </div>
+    <button class="theme-btn" id="themeToggle" aria-label="Alternar tema"><span id="themeIcon">🌙</span></button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 1 — LANDING PAGE
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="landingPage" class="page active">
+
+  <!-- Hero -->
+  <section class="hero-section section"><div class="container">
+    <div class="hero-tag">Ativos seguros com foco em saúde</div>
+    <h1>Transforme seu corpo<br><span class="hero-highlight">com ciência e cuidado</span></h1>
+    <p>Ebook para quem quer emagrecer com apoio de ativos farmacêuticos, entendendo melhor o que está usando.</p>
+    <button class="btn" id="heroButton">Quero acessar o ebook</button>
+  </div></section>
+
+  <!-- O que você vai descobrir -->
+  <section class="section"><div class="container">
+    <div class="title">O que você vai descobrir</div>
+    <p class="subtitle">Você aprende, em linguagem simples, quais tipos de ativos podem ser aliados e quais cuidados são importantes.</p>
+    <div class="grid">
+      <div class="card"><span class="emoji">🧬</span><h3>Como o corpo responde</h3><p>Visão clara de como o metabolismo reage a estímulos e a ativos comuns no emagrecimento.</p></div>
+      <div class="card"><span class="emoji">👨‍🔬</span><h3>O "conjunto oculto"</h3><p>Seleção comentada de ativos, sem nomes comerciais nem propaganda, com foco em uso responsável.</p></div>
+      <div class="card"><span class="emoji">🔍</span><h3>Ativo mais compatível</h3><p>Guia direto para relacionar objetivos, fase da jornada e tipo de ativo que costuma fazer mais sentido como apoio.</p></div>
+    </div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="section"><div class="container"><div class="cta-box">
+    <div class="pill">Conteúdo digital exclusivo</div>
+    <div class="title">Um passo mais consciente</div>
+    <p>O ebook "Transforme Seu Corpo com Ciência e Cuidado" foi feito para quem busca resultados com responsabilidade, usando informação séria como base.</p>
+    <button class="btn" id="ctaButton">Quero meu ebook agora</button>
+  </div></div></section>
+
+  <!-- Autores -->
+  <section class="section"><div class="container">
+    <div class="title">Sobre os Autores</div>
+    <p class="subtitle">Conheça os responsáveis por este conteúdo</p>
+    <div class="authors-grid">
+      <div class="author-card">
+        <div class="author-photo-wrapper"><img src="https://i.ibb.co/sdNwJRFn/erik.png" alt="Erik dos Santos" class="author-photo" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,var(--pri),var(--pri2));border:3px solid #fff&quot;>👨‍⚕️</div>'"></div>
+        <h3 class="author-name">Erik dos Santos N.R.</h3>
+        <p class="author-bio">Erik dos Santos é graduando em Farmácia pela Uniasselvi e atua há quase dez anos com manipulação magistral e prescrição personalizada de cosméticos e fórmulas, sempre com foco na individualização do cuidado e na aplicação responsável da ciência.</p>
+      </div>
+      <div class="author-card">
+        <div class="author-photo-wrapper"><img src="https://i.ibb.co/qFXz0FtX/matheus.png" alt="Matheus da Silveira" class="author-photo" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,var(--pri),var(--pri2));border:3px solid #fff&quot;>👨‍🔬</div>'"></div>
+        <h3 class="author-name">Matheus L.R. da Silveira</h3>
+        <p class="author-bio">Matheus da Silveira é farmacêutico, com atuação voltada à manipulação magistral, à homeopatia e às operações de drogaria, possuindo experiência prática no desenvolvimento de fórmulas, na análise de ativos e na organização de processos farmacêuticos.</p>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 2 — FORMULÁRIO DE LEAD
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="formPage" class="page">
+  <section class="section"><div class="form-container"><div class="form-box">
+    <div class="form-icon">📚</div>
+    <h2 class="form-title">Garanta acesso ao seu ebook</h2>
+    <p class="form-subtitle">Preencha seus dados abaixo para ver os links de compra</p>
+    <form id="ebookForm">
+      <div class="form-group"><label for="userName">Nome completo</label><input type="text" id="userName" name="userName" required placeholder="Digite seu nome" autocomplete="off"></div>
+      <div class="form-group"><label for="userEmail">E-mail</label><input type="email" id="userEmail" name="userEmail" required placeholder="seu@email.com" autocomplete="off"></div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="newsletter" name="newsletter">
+        <label for="newsletter">Desejo receber informações sobre novas edições do ebook e conteúdos relacionados</label>
+      </div>
+      <button type="submit" class="form-btn" id="submitBtn">Ver opções de compra</button>
+    </form>
+    <a href="#" class="back-link" id="backLink">← Voltar para a página inicial</a>
+  </div></div></section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 3 — LINKS DE COMPRA (gerado dinamicamente)
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="downloadPage" class="page">
+  <section class="section"><div class="form-container"><div class="form-box">
+    <div class="success-icon">🎉</div>
+    <h2 class="form-title">Escolha onde comprar seu ebook!</h2>
+    <p class="form-subtitle">Selecione a plataforma de sua preferência para adquirir o conteúdo</p>
+    <div class="platforms-grid" id="platformsGrid"><!-- preenchido pelo JS --></div>
+    <button class="form-btn" id="backToHomeFromDownload" style="margin-top:8px">Voltar ao início</button>
+  </div></div></section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 4 — ADMIN LOGIN
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="adminLoginPage" class="page">
+  <section class="section"><div class="form-container"><div class="form-box">
+    <div class="form-icon">🔒</div>
+    <h2 class="form-title">Acesso administrativo</h2>
+    <p class="form-subtitle">Digite login e senha para acessar o painel</p>
+    <form id="adminLoginForm">
+      <div class="form-group"><label for="adminUser">Login</label><input type="text" id="adminUser" name="adminUser" required placeholder="Digite o login" autocomplete="off"></div>
+      <div class="form-group"><label for="adminPass">Senha</label><input type="password" id="adminPass" name="adminPass" required placeholder="Digite a senha"></div>
+      <button type="submit" class="form-btn" id="adminLoginBtn">Entrar</button>
+    </form>
+    <a href="#" class="back-link" id="adminBackLink">← Voltar para a página inicial</a>
+  </div></div></section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 5 — ADMIN DASHBOARD
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="adminDashboardPage" class="page">
+  <section class="section"><div class="container">
+
+    <!-- Header do admin -->
+    <div class="cta-box" style="border-radius:18px">
+      <div class="pill">Área restrita</div>
+      <div class="title">Painel Administrativo</div>
+      <p style="max-width:720px">Gerencia leads, e-books e relatórios. Logout automático ao sair da página.</p>
+      <button class="btn" id="adminLogoutBtn" style="margin-top:6px">Sair (logout)</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="admin-tabs" style="margin-top:20px">
+      <button class="admin-tab active" data-tab="leads">📋 Leads</button>
+      <button class="admin-tab" data-tab="ebooks">📚 E-books</button>
+      <button class="admin-tab" data-tab="novo-ebook">➕ Novo E-book</button>
+      <button class="admin-tab" data-tab="relatorio">📊 Relatório</button>
+    </div>
+
+    <!-- TAB: LEADS -->
+    <div class="admin-tab-content active" id="tab-leads">
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr>
+            <th>Data</th><th>Nome</th><th>E-mail</th><th>Newsletter</th>
+          </tr></thead>
+          <tbody id="leadsTbody"></tbody>
+        </table>
+        <div class="empty-msg" id="leadsEmpty" style="display:none">Nenhum lead salvo ainda.</div>
+      </div>
+    </div>
+
+    <!-- TAB: E-BOOKS CADASTRADOS -->
+    <div class="admin-tab-content" id="tab-ebooks">
+      <div id="ebooksAdminList"><!-- preenchido pelo JS --></div>
+    </div>
+
+    <!-- TAB: NOVO E-BOOK -->
+    <div class="admin-tab-content" id="tab-novo-ebook">
+      <div class="card" style="max-width:600px">
+        <form id="novoEbookForm">
+          <div class="form-group"><label>Título do e-book</label><input type="text" id="eb-titulo" required placeholder="Ex: Transforme Seu Corpo..."></div>
+          <div class="form-group"><label>Autor(es)</label><input type="text" id="eb-autor" placeholder="Ex: Erik dos Santos & Matheus da Silveira"></div>
+          <div class="form-group"><label>Descrição curta</label><textarea id="eb-descricao" placeholder="Até 2 linhas para a card da LP..."></textarea></div>
+          <div class="form-group"><label>URL da imagem/capa (opcional)</label><input type="url" id="eb-imagem" placeholder="https://..."></div>
+
+          <label style="display:block;font-size:13px;font-weight:800;color:#374151;margin-bottom:8px;margin-top:16px">Links de compra</label>
+          <div id="linksContainer">
+            <!-- link row gerado pelo JS -->
+          </div>
+          <button type="button" class="add-link-btn" id="addLinkBtn">+ Adicionar link</button>
+
+          <button type="submit" class="form-btn" id="novoEbookBtn" style="margin-top:20px">Cadastrar E-book</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB: RELATÓRIO -->
+    <div class="admin-tab-content" id="tab-relatorio">
+      <div class="card" style="max-width:600px">
+        <p style="font-size:13px;color:var(--muted2);margin-bottom:16px">Seleciona o período e clica em gerar. O relatório baixa como CSV direto no navegador.</p>
+        <div class="report-row">
+          <div class="form-group"><label>Data inicial</label><input type="date" id="reportInicio"></div>
+          <div class="form-group"><label>Data final</label><input type="date" id="reportFim"></div>
+          <button class="report-btn" id="gerarRelatorio">📊 Gerar</button>
+        </div>
+      </div>
+    </div>
+
+  </div></section>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <p>© 2026 • Transforme Seu Corpo com Ciência e Cuidado — Erik dos Santos &amp; Matheus da Silveira</p>
+  <p>Conteúdo educativo. Não substitui acompanhamento profissional. Consulte seu profissional de saúde antes de usar ativos farmacêuticos.</p>
+</footer>
+
+<!-- ═══ TOAST ═══ -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT — TODA A LÓGICA
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+(()=>{
+// ─── CONFIGURAÇÃO ─────────────────────────────────────────────
+// Frontend e backend estão no mesmo domínio (Vercel) — usa rotas relativas
+const API = window.location.origin;
+
+// ─── ESTADO ──────────────────────────────────────────────────
+let jwtToken   = null;   // JWT em memória (some ao recarregar)
+let currentLeadId = null; // lead_id do visitante atual
+let ebooksData = [];     // cache dos ebooks
+
+// ─── HELPERS ─────────────────────────────────────────────────
+const $  = id => document.getElementById(id);
+const esc = s => String(s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function showToast(msg, isError=false) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─── PAGES ───────────────────────────────────────────────────
+const pages = ['landingPage','formPage','downloadPage','adminLoginPage','adminDashboardPage'];
+function goPage(id) {
+  pages.forEach(p => $( p)?.classList.remove('active'));
+  $(id)?.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ─── TEMA (claro/escuro) ─────────────────────────────────────
+const applyTheme = t => {
+  document.body.classList.toggle('dark-theme', t==='dark');
+  $('themeIcon').textContent = t==='dark' ? '☀️' : '🌙';
+  localStorage.setItem('theme', t);
+};
+applyTheme(localStorage.getItem('theme') || 'light');
+$('themeToggle').addEventListener('click', () =>
+  applyTheme(document.body.classList.contains('dark-theme') ? 'light' : 'dark')
+);
+
+// ─── NAVIGAÇÃO BÁSICA ────────────────────────────────────────
+$('heroButton').addEventListener('click', () => goPage('formPage'));
+$('ctaButton').addEventListener('click',  () => goPage('formPage'));
+$('backLink').addEventListener('click',   (e)=>{ e.preventDefault(); goPage('landingPage'); });
+$('backToHomeFromDownload').addEventListener('click', () => {
+  goPage('landingPage');
+  $('ebookForm').reset();
+  $('submitBtn').disabled = false;
+  $('submitBtn').textContent = 'Ver opções de compra';
+});
+$('adminLink').addEventListener('click', (e)=>{ e.preventDefault(); goPage('adminLoginPage'); });
+$('adminBackLink').addEventListener('click', (e)=>{ e.preventDefault(); goPage('landingPage'); });
+
+// ─── LOGOUT ──────────────────────────────────────────────────
+function logout() {
+  jwtToken = null;
+  $('adminLoginForm').reset();
+  goPage('landingPage');
+}
+$('adminLogoutBtn').addEventListener('click', (e)=>{ e.preventDefault(); logout(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && $('adminDashboardPage').classList.contains('active')) logout();
+});
+window.addEventListener('beforeunload', () => { jwtToken = null; });
+
+// ═══════════════════════════════════════════════════════════════
+//  FORMULÁRIO DE LEAD → POST /api/leads
+// ═══════════════════════════════════════════════════════════════
+$('ebookForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const nome  = $('userName').value.trim();
+  const email = $('userEmail').value.trim();
+  const newsletter = $('newsletter').checked;
+  const btn = $('submitBtn');
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    const res = await fetch(`${API}/api/leads`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ nome, email, aceita_newsletter: newsletter })
+    });
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.erro || 'Erro ao salvar.');
+
+    currentLeadId = data.lead_id;
+    renderPurchaseLinks();
+    goPage('downloadPage');
+  } catch(err) {
+    showToast(err.message, true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Ver opções de compra';
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDERIZA LINKS DE COMPRA (página 3)
+// ═══════════════════════════════════════════════════════════════
+const PLAT_ICONS = {
+  'Google Play Livros':'📱',
+  'Amazon Kindle':'📖',
+  'Hotmart':'🏪'
+};
+function renderPurchaseLinks() {
+  // Pega o primeiro ebook (MVP — um livro só por enquanto)
+  const eb = ebooksData[0];
+  if (!eb) { showToast('Nenhum e-book disponível.', true); return; }
+
+  const grid = $('platformsGrid');
+  grid.innerHTML = '';
+
+  eb.links.forEach(link => {
+    const icon = PLAT_ICONS[link.plataforma] || '🔗';
+    const card = document.createElement('a');
+    card.href = '#';
+    card.className = 'platform-card';
+    card.innerHTML = `
+      <div class="platform-icon">${icon}</div>
+      <div class="platform-text">
+        <div class="platform-name">${esc(link.plataforma)}</div>
+        <div class="platform-desc">Clique para acessar</div>
+      </div>`;
+
+    // Ao clicar: registra clique PRIMEIRO, depois redireciona
+    card.addEventListener('click', async (e) => {
+      e.preventDefault();
+      // Registra clique (não bloqueia UX — dispara no background)
+      fetch(`${API}/api/cliques`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ link_compra_id: link.id, lead_id: currentLeadId })
+      }).catch(()=>{}); // silencioso
+
+      // Redireciona após curtíssima espera (garante o envio)
+      setTimeout(() => window.open(link.url, '_blank'), 150);
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  CARREGA E-BOOKS na subida (GET /api/ebooks)
+// ═══════════════════════════════════════════════════════════════
+async function loadEbooks() {
+  try {
+    const res  = await fetch(`${API}/api/ebooks`);
+    ebooksData = await res.json();
+  } catch(_) {
+    console.warn('Não foi possível carregar e-books da API.');
+  }
+}
+loadEbooks(); // carrega quando a página abre
+
+// ═══════════════════════════════════════════════════════════════
+//  ADMIN LOGIN → POST /api/admin/login
+// ═══════════════════════════════════════════════════════════════
+$('adminLoginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('adminLoginBtn');
+  btn.disabled = true;
+  btn.textContent = 'Verificando...';
+
+  try {
+    const res = await fetch(`${API}/api/admin/login`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ usuario: $('adminUser').value.trim(), senha: $('adminPass').value.trim() })
+    });
+    const data = await res.json();
+
+    if (!res.ok) { showToast('Login ou senha inválidos.', true); return; }
+
+    jwtToken = data.token;
+    goPage('adminDashboardPage');
+    loadAdminData(); // carrega leads + ebooks do admin
+  } catch(_) {
+    showToast('Erro de conexão.', true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Entrar';
+  }
+});
+
+// ─── Helper: headers com token ───────────────────────────────
+function authHeaders() {
+  return { 'Content-Type':'application/json', 'Authorization':`Bearer ${jwtToken}` };
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  ADMIN — TABS
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('.admin-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    $('tab-' + tab.dataset.tab)?.classList.add('active');
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+//  ADMIN — CARREGA DADOS (leads + ebooks)
+// ═══════════════════════════════════════════════════════════════
+async function loadAdminData() {
+  renderLeads();
+  renderAdminEbooks();
+}
+
+// ── Leads ────────────────────────────────────────────────────
+async function renderLeads() {
+  try {
+    const res  = await fetch(`${API}/api/admin/leads`, { headers: authHeaders() });
+    const data = await res.json();
+    const tbody = $('leadsTbody');
+    const empty = $('leadsEmpty');
+    tbody.innerHTML = '';
+
+    if (!data.leads || !data.leads.length) { empty.style.display='block'; return; }
+    empty.style.display = 'none';
+
+    data.leads.forEach(l => {
+      const d = new Date(l.criado_em);
+      const when = d.getDate().toString().padStart(2,'0') + '/' + (d.getMonth()+1).toString().padStart(2,'0') + '/' + d.getFullYear().toString().slice(-2);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${when}</td><td>${esc(l.nome)}</td><td>${esc(l.email)}</td><td>${l.aceita_newsletter?'Sim':'Não'}</td>`;
+      tbody.appendChild(tr);
+    });
+  } catch(_) { showToast('Erro ao carregar leads.', true); }
+}
+
+// ── E-books cadastrados ──────────────────────────────────────
+async function renderAdminEbooks() {
+  try {
+    const res   = await fetch(`${API}/api/admin/ebooks`, { headers: authHeaders() });
+    const books = await res.json();
+    const list  = $('ebooksAdminList');
+    list.innerHTML = '';
+
+    if (!books.length) { list.innerHTML = '<div class="empty-msg">Nenhum e-book cadastrado.</div>'; return; }
+
+    books.forEach(eb => {
+      const card = document.createElement('div');
+      card.className = 'ebook-admin-card';
+      const linksHtml = (eb.links||[]).map(l =>
+        `<span class="ebook-link-badge">${esc(l.plataforma)} (${l.total_cliques} cliques)</span>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="ebook-header">
+          <div>
+            <div class="ebook-title">${esc(eb.titulo)}</div>
+            <div class="ebook-meta">${esc(eb.autor||'—')} · criado ${new Date(eb.criado_em).toLocaleDateString('pt-BR')}</div>
+          </div>
+          <span class="status-badge ${eb.ativo?'on':'off'}">${eb.ativo?'Ativo':'Inativo'}</span>
+        </div>
+        <div class="ebook-links">${linksHtml}</div>`;
+      list.appendChild(card);
+    });
+  } catch(_) { showToast('Erro ao carregar e-books.', true); }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  ADMIN — NOVO E-BOOK (formulário dinâmico de links)
+// ═══════════════════════════════════════════════════════════════
+const PLATAFORMAS = ['Amazon Kindle','Google Play Livros','Hotmart','Outro'];
+
+function createLinkRow(container) {
+  const row = document.createElement('div');
+  row.className = 'link-row';
+  row.innerHTML = `
+    <div class="form-group">
+      <label>Plataforma</label>
+      <select class="link-plat">
+        ${PLATAFORMAS.map(p => `<option value="${p}">${p}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>URL</label>
+      <input type="url" class="link-url" placeholder="https://...">
+    </div>
+    <button type="button" class="remove-link-btn" title="Remover">✕</button>`;
+
+  row.querySelector('.remove-link-btn').addEventListener('click', () => {
+    if ($('linksContainer').children.length > 1) row.remove();
+  });
+  container.appendChild(row);
+}
+
+// Inicia com 1 linha de link
+createLinkRow($('linksContainer'));
+
+$('addLinkBtn').addEventListener('click', () => createLinkRow($('linksContainer')));
+
+// Submit novo e-book
+$('novoEbookForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('novoEbookBtn');
+  btn.disabled = true; btn.textContent = 'Cadastrando...';
+
+  // Monta array de links
+  const links = [];
+  $('linksContainer').querySelectorAll('.link-row').forEach(row => {
+    const plat = row.querySelector('.link-plat').value;
+    const url  = row.querySelector('.link-url').value.trim();
+    if (url) links.push({ plataforma: plat, url });
+  });
+
+  if (!links.length) { showToast('Adiciona pelo menos um link.', true); btn.disabled=false; btn.textContent='Cadastrar E-book'; return; }
+
+  const body = {
+    titulo:     $('eb-titulo').value.trim(),
+    autor:      $('eb-autor').value.trim(),
+    descricao:  $('eb-descricao').value.trim(),
+    imagem_url: $('eb-imagem').value.trim(),
+    links
+  };
+
+  try {
+    const res = await fetch(`${API}/api/admin/ebooks`, { method:'POST', headers: authHeaders(), body: JSON.stringify(body) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.erro || 'Erro.');
+
+    showToast('E-book cadastrado com sucesso! ✅');
+    $('novoEbookForm').reset();
+    $('linksContainer').innerHTML = '';
+    createLinkRow($('linksContainer'));
+    renderAdminEbooks(); // atualiza lista
+  } catch(err) { showToast(err.message, true); }
+  finally { btn.disabled=false; btn.textContent='Cadastrar E-book'; }
+});
+
+// ═══════════════════════════════════════════════════════════════
+//  ADMIN — RELATÓRIO (download CSV)
+// ═══════════════════════════════════════════════════════════════
+// Seta datas padrão
+(()=>{
+  const hoje = new Date().toISOString().split('T')[0];
+  const mes  = new Date(); mes.setMonth(mes.getMonth()-1);
+  $('reportInicio').value = mes.toISOString().split('T')[0];
+  $('reportFim').value    = hoje;
+})();
+
+$('gerarRelatorio').addEventListener('click', async () => {
+  const btn = $('gerarRelatorio');
+  btn.disabled = true; btn.textContent = 'Gerando...';
+
+  const inicio = $('reportInicio').value;
+  const fim    = $('reportFim').value;
+
+  try {
+    const res = await fetch(`${API}/api/admin/relatorio?inicio=${inicio}&fim=${fim}`, { headers: authHeaders() });
+    if (!res.ok) { const d = await res.json(); throw new Error(d.erro); }
+
+    // Baixa o CSV automaticamente
+    const blob = await res.blob();
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `relatorio_${inicio}_a_${fim}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToast('Relatório baixado! ✅');
+  } catch(err) { showToast(err.message || 'Erro ao gerar relatório.', true); }
+  finally { btn.disabled=false; btn.textContent='📊 Gerar'; }
+});
+
+})(); // fim IIFE
+</script>
+</body>
+</html>

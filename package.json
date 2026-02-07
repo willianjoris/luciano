@@ -1,0 +1,9 @@
+{
+  "name": "ebook-platform",
+  "version": "1.0.0",
+  "description": "Plataforma de E-books — Frontend + API serverless no Vercel",
+  "dependencies": {
+    "postgres": "^3.4.3",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
