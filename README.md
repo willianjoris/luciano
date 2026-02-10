@@ -17,9 +17,9 @@ Guia completo para colocar **frontend + backend** no ar usando **só o Vercel** 
 └── api/
     ├── _db.js              ← conexão com PostgreSQL
     ├── _auth.js            ← middleware JWT
-    ├── leads.js            ← POST /api/leads
-    ├── ebooks.js           ← GET /api/ebooks
-    ├── cliques.js          ← POST /api/cliques
+    ├── apileads.js            ← POST /api/leads
+    ├── apiebooks.js           ← GET /api/ebooks
+    ├── apicliques.js          ← POST /api/cliques
     └── admin/
         ├── login.js        ← POST /api/admin/login
         ├── leads.js        ← GET /api/admin/leads
